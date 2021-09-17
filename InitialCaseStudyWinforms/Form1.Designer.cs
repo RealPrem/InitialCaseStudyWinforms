@@ -32,14 +32,12 @@ namespace InitialCaseStudyWinforms
             this.panel1 = new System.Windows.Forms.Panel();
             this.PathLabel = new System.Windows.Forms.Label();
             this.DistanceLabel = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.Evolution = new System.Windows.Forms.Button();
+            this.CounterLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.PathLabel);
-            this.panel1.Controls.Add(this.DistanceLabel);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(600, 600);
@@ -49,7 +47,7 @@ namespace InitialCaseStudyWinforms
             // PathLabel
             // 
             this.PathLabel.AutoSize = true;
-            this.PathLabel.Location = new System.Drawing.Point(466, 58);
+            this.PathLabel.Location = new System.Drawing.Point(702, 19);
             this.PathLabel.Name = "PathLabel";
             this.PathLabel.Size = new System.Drawing.Size(36, 17);
             this.PathLabel.TabIndex = 1;
@@ -58,32 +56,46 @@ namespace InitialCaseStudyWinforms
             // DistanceLabel
             // 
             this.DistanceLabel.AutoSize = true;
-            this.DistanceLabel.Location = new System.Drawing.Point(466, 95);
+            this.DistanceLabel.Location = new System.Drawing.Point(702, 59);
             this.DistanceLabel.Name = "DistanceLabel";
             this.DistanceLabel.Size = new System.Drawing.Size(46, 17);
             this.DistanceLabel.TabIndex = 2;
             this.DistanceLabel.Text = "label1";
             // 
-            // panel2
+            // Evolution
             // 
-            this.panel2.Location = new System.Drawing.Point(600, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(500, 500);
-            this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.Evolution.Location = new System.Drawing.Point(705, 161);
+            this.Evolution.Name = "Evolution";
+            this.Evolution.Size = new System.Drawing.Size(147, 73);
+            this.Evolution.TabIndex = 3;
+            this.Evolution.Text = "ClickMe";
+            this.Evolution.UseVisualStyleBackColor = true;
+            this.Evolution.Click += new System.EventHandler(this.Evolution_Click);
+            // 
+            // CounterLabel
+            // 
+            this.CounterLabel.AutoSize = true;
+            this.CounterLabel.Location = new System.Drawing.Point(705, 95);
+            this.CounterLabel.Name = "CounterLabel";
+            this.CounterLabel.Size = new System.Drawing.Size(46, 17);
+            this.CounterLabel.TabIndex = 4;
+            this.CounterLabel.Text = "label1";
+            this.CounterLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 692);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.CounterLabel);
+            this.Controls.Add(this.Evolution);
+            this.Controls.Add(this.DistanceLabel);
+            this.Controls.Add(this.PathLabel);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -92,7 +104,8 @@ namespace InitialCaseStudyWinforms
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label PathLabel;
         private System.Windows.Forms.Label DistanceLabel;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button Evolution;
+        private System.Windows.Forms.Label CounterLabel;
     }
 }
 

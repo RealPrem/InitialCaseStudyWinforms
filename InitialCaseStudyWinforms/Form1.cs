@@ -12,23 +12,24 @@ namespace InitialCaseStudyWinforms
 {
     public partial class Form1 : Form
     {
-        public TSP TravellingSalesMan = new TSP(5);
+        public TSP TravellingSalesMan = new TSP(20);
+        public int NumOfClicked = 0;
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            
+
             panel1.BackColor = Color.LightBlue;
             Graphics G = e.Graphics;
 
             //G.FillRectangle(new SolidBrush(Color.LightPink), 0, 0, 100, 100);
-            
-            /*
-            foreach(City C in TravellingSalesMan.AllCities)
+
+
+            foreach (City C in TravellingSalesMan.AllCities)
             {
                 G.FillEllipse(new SolidBrush(Color.Red), C.X - 5, C.Y - 5, 10, 10);
                 G.DrawString(C.Name, new Font("Arial", 12), new SolidBrush(Color.Black), C.X + 5, C.Y + 5);
@@ -44,8 +45,8 @@ namespace InitialCaseStudyWinforms
                 int Y2 = BestPath.Cities[i + 1].Y;
 
                 //CornflowerBlue
-                G.DrawLine(new Pen(Color.LightPink, 3), X1, Y1, X2, Y2 );
-                
+                G.DrawLine(new Pen(Color.LightPink, 3), X1, Y1, X2, Y2);
+
             }
             string CityPath = "PATH: ";
             string TotalDistance = "DISTANCE: " + BestPath.Distance.ToString();
@@ -56,12 +57,14 @@ namespace InitialCaseStudyWinforms
             }
             PathLabel.Text = CityPath;
             DistanceLabel.Text = TotalDistance;
-            */
+
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void Evolution_Click(object sender, EventArgs e)
         {
-            panel2.BackColor = Color.Red;
+            TravellingSalesMan.PerformEvolution();
+            panel1.Invalidate();
+            CounterLabel.Text = "Clicked: " + TravellingSalesMan.GetNumOfGenerations();
         }
     }
 }
