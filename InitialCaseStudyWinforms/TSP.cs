@@ -30,8 +30,8 @@ namespace InitialCaseStudyWinforms
             GenerateAllPaths();
             CalculateDistance();
             SortByDistance();
-            SelectionTruncation(50);
-            OrderCrossOver(Paths[2], Paths[1], 2, 4);
+            //OrderCrossOver(Paths[0], Paths[1], 2, 4);
+
             //Evaluation
             //SortByDistance();
             //TournamentSelection(5);
@@ -304,7 +304,7 @@ namespace InitialCaseStudyWinforms
                 }
                 IndexToCheck += 1;
             }
-            Console.WriteLine("Test");
+            Offspring.calDistance();
             return Offspring;
 
         }
@@ -336,13 +336,42 @@ namespace InitialCaseStudyWinforms
             }
             return childrenpaths;
         }
+        public List<Path> CrossOverForOrder()
+        {
+            List<Path> ChildrenPaths = new List<Path>();
+            ChildrenPaths.Add(Paths[0]);
+            for (int i = 0; i < Paths.Count - 1; i += 1)
+            {
+                int R1 = R.Next(1, NumOfCities);
+                int R2 = R.Next(0, NumOfCities);
+                while (R1 != R2 && R2 < R1)
+                {
+                    R1 = R.Next(1, NumOfCities);
+                    R2 = R.Next(0, NumOfCities);
+                }
+                Path ChildPath = OrderCrossOver(Paths[i], Paths[Paths.Count - 1 - i], R1, R2);
+                int r1 = R.Next(NumOfCities);
+                int r2 = R.Next(NumOfCities);
+                City temp = ChildPath.Cities[r1];
+                ChildPath.Cities[r1] = ChildPath.Cities[r2];
+                ChildPath.Cities[r2] = temp;
+                ChildrenPaths.Add(ChildPath);
+            }
+            Console.WriteLine();
+            return ChildrenPaths;
+        }
         public void PerformEvolution()
         {
             while (GenerationNum < 1000)
             {
-                //SelectionTruncation(50);
+                /* FOR CYCLE CROSS OVER
                 TournamentSelection(10);
                 Paths = CrossOverForCycle();
+                SortByDistance();
+                GenerationNum += 1;
+                */
+                SelectionTruncation(50);
+                Paths = CrossOverForOrder();
                 SortByDistance();
                 GenerationNum += 1;
             }
