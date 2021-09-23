@@ -30,7 +30,8 @@ namespace InitialCaseStudyWinforms
             GenerateAllPaths();
             CalculateDistance();
             SortByDistance();
-
+            SelectionTruncation(50);
+            OrderCrossOver(Paths[2], Paths[1], 2, 4);
             //Evaluation
             //SortByDistance();
             //TournamentSelection(5);
@@ -265,6 +266,48 @@ namespace InitialCaseStudyWinforms
             //   bool haschanged = o1 != p0 && o1 != p1;          
             return childpath;
         }
+        //First variant of OrderCrossOver
+        public Path OrderCrossOver(Path ParentOne, Path ParentTwo, int StartIndex, int EndIndex)
+        {
+            Path Offspring = new Path();
+            StartIndex -= 1;
+
+            for(int i = 0; i < ParentOne.Cities.Count; i += 1)
+            {
+                Offspring.Cities.Add(new City(0, 0, "empty"));
+            }
+            //Adding the values between the CutPoints
+            for (int i = StartIndex; i < EndIndex; i += 1)
+            {
+                Offspring.Cities[i] = ParentOne.Cities[i];
+            }
+            int IndexToAdd = EndIndex;
+            int IndexToCheck = EndIndex;
+            //Checks whether there are still empty lists
+            while (Offspring.Cities.Exists(C => C.Name == "empty"))
+            {
+                if (IndexToCheck == NumOfCities)
+                {
+                    IndexToCheck = 0;
+                }
+                if (IndexToAdd == NumOfCities)
+                {
+                    IndexToAdd = 0;
+                }
+
+                City CurrentCity = ParentTwo.Cities[IndexToCheck];
+
+                if (!Offspring.Cities.Contains(CurrentCity) && Offspring.Cities[IndexToAdd].Name == "empty")
+                {
+                    Offspring.Cities[IndexToAdd] = ParentTwo.Cities[IndexToCheck];
+                    IndexToAdd += 1;
+                }
+                IndexToCheck += 1;
+            }
+            Console.WriteLine("Test");
+            return Offspring;
+
+        }
         public bool IsValidBool(Path Path)
         {
             return Path.Cities.Distinct().Count() == Path.Cities.Count;
@@ -275,21 +318,8 @@ namespace InitialCaseStudyWinforms
             return newcity;
         }
 
-        public List<Path> CrossOver()
+        public List<Path> CrossOverForCycle()
         {
-            /*
-            List<Path> ChildrenPaths = new List<Path>();
-            ChildrenPaths.Add(Paths[0]);
-
-            for (int i = 0; i < Paths.Count() - 1; i += 1)
-            {
-                Path ChildPath = crossovercycle(Paths[i], Paths[i+1]);
-                CalculateDistance();
-
-                ChildrenPaths.Add(ChildPath);
-            }
-            return ChildrenPaths;
-            */
             List<Path> childrenpaths = new List<Path>();
             childrenpaths.Add(Paths[0]);
             for (int i = 0; i < Paths.Count - 1; i++)
@@ -312,7 +342,7 @@ namespace InitialCaseStudyWinforms
             {
                 //SelectionTruncation(50);
                 TournamentSelection(10);
-                Paths = CrossOver();
+                Paths = CrossOverForCycle();
                 SortByDistance();
                 GenerationNum += 1;
             }

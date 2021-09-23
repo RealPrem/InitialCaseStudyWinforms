@@ -12,7 +12,7 @@ namespace InitialCaseStudyWinforms
 {
     public partial class Form1 : Form
     {
-        public TSP TravellingSalesMan = new TSP(20);
+        public TSP TravellingSalesMan = new TSP(6);
         public int NumOfClicked = 0;
         public Form1()
         {
