@@ -18,8 +18,9 @@ namespace InitialCaseStudyWinforms
 
         public string Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         public int GenerationNum = 0;
-        public TSP(int n)
+        public TSP(int n, int Seed)
         {
+            R = new Random(Seed);
             NumOfCities = n;
             for (int i = 0; i < n; i += 1)
             {
@@ -350,11 +351,6 @@ namespace InitialCaseStudyWinforms
                     R2 = R.Next(0, NumOfCities);
                 }
                 Path ChildPath = OrderCrossOver(Paths[i], Paths[Paths.Count - 1 - i], R1, R2);
-                int r1 = R.Next(NumOfCities);
-                int r2 = R.Next(NumOfCities);
-                City temp = ChildPath.Cities[r1];
-                ChildPath.Cities[r1] = ChildPath.Cities[r2];
-                ChildPath.Cities[r2] = temp;
                 ChildrenPaths.Add(ChildPath);
             }
             Console.WriteLine();
@@ -364,16 +360,18 @@ namespace InitialCaseStudyWinforms
         {
             while (GenerationNum < 1000)
             {
-                /* FOR CYCLE CROSS OVER
-                TournamentSelection(10);
-                Paths = CrossOverForCycle();
-                SortByDistance();
-                GenerationNum += 1;
-                */
-                SelectionTruncation(50);
+                TournamentSelection(5);
                 Paths = CrossOverForOrder();
                 SortByDistance();
                 GenerationNum += 1;
+                
+
+                /*
+                TournamentSelection(10);
+                Paths = CrossOverForOrder();
+                SortByDistance();
+                GenerationNum += 1;
+                */
             }
            
         }

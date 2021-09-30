@@ -34,6 +34,10 @@ namespace InitialCaseStudyWinforms
             this.DistanceLabel = new System.Windows.Forms.Label();
             this.Evolution = new System.Windows.Forms.Button();
             this.CounterLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SeedLabel = new System.Windows.Forms.Label();
+            this.SeedButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // panel1
@@ -82,11 +86,51 @@ namespace InitialCaseStudyWinforms
             this.CounterLabel.Text = "label1";
             this.CounterLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(909, 90);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // SeedLabel
+            // 
+            this.SeedLabel.AutoSize = true;
+            this.SeedLabel.Location = new System.Drawing.Point(909, 36);
+            this.SeedLabel.Name = "SeedLabel";
+            this.SeedLabel.Size = new System.Drawing.Size(46, 17);
+            this.SeedLabel.TabIndex = 6;
+            this.SeedLabel.Text = "label1";
+            // 
+            // SeedButton
+            // 
+            this.SeedButton.Location = new System.Drawing.Point(912, 161);
+            this.SeedButton.Name = "SeedButton";
+            this.SeedButton.Size = new System.Drawing.Size(153, 73);
+            this.SeedButton.TabIndex = 7;
+            this.SeedButton.Text = "SelectedSeed";
+            this.SeedButton.UseVisualStyleBackColor = true;
+            this.SeedButton.Click += new System.EventHandler(this.SeedButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(909, 266);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 692);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.SeedButton);
+            this.Controls.Add(this.SeedLabel);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.CounterLabel);
             this.Controls.Add(this.Evolution);
             this.Controls.Add(this.DistanceLabel);
@@ -106,6 +150,10 @@ namespace InitialCaseStudyWinforms
         private System.Windows.Forms.Label DistanceLabel;
         private System.Windows.Forms.Button Evolution;
         private System.Windows.Forms.Label CounterLabel;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label SeedLabel;
+        private System.Windows.Forms.Button SeedButton;
+        private System.Windows.Forms.Label label1;
     }
 }
 
